@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRACE-X — Tactical Reconstruction & Cyber Evidence eXplorer</title>
+  <meta name="description" content="TRACE-X: Advanced Interactive Cybersecurity Investigation & Cyber Threat Timeline Reconstruction Engine.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== TOP NAVIGATION HEADER ==================== -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <div class="brand-logo" id="logo-btn">
+        <div class="brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <span>TRACE<span class="text-cyan">-X</span></span>
+        <span class="brand-badge">SOC v3.0 PRO</span>
+      </div>
+      
+      <div class="nav-controls">
+        <button class="btn btn-outline btn-sm" id="nav-categories-btn">
+          <i class="fa-solid fa-layer-group"></i> Categories
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== SCREEN 1: LANDING PAGE ==================== -->
+  <main id="screen-landing" class="screen active">
+    <div class="container">
+      <section class="hero-section">
+        <div class="hero-eyebrow">
+          <i class="fa-solid fa-terminal"></i> HACKATHON-READY CYBER FORENSICS ENGINE
+        </div>
+        <h1 class="hero-title">Reconstruct Attacks.<br>Attribute Threats. Master Defense.</h1>
+        <p class="hero-subtitle">
+          TRACE-X delivers realistic tactical SOC telemetry investigations across 6 fully playable incident domains. Analyze raw logs, filter out benign noise, reconstruct chronological attack kill-chains, and attribute MITRE ATT&CK techniques.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg" id="start-investigation-btn">
+            <i class="fa-solid fa-crosshairs"></i> Select Category & Start
+          </button>
+          <a href="#features" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-circle-info"></i> Platform Specs
+          </a>
+        </div>
+
+        <div class="feature-grid" id="features">
+          <div class="glass-panel feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-filter"></i>
+            </div>
+            <h3>Telemetry Noise Filtering</h3>
+            <p>Isolate genuine incident evidence artifacts from realistic benign background noise logs.</p>
+          </div>
+
+          <div class="glass-panel feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h3>Timeline Reconstruction</h3>
+            <p>Chronologically sequence multi-stage attack events from initial access to data exfiltration.</p>
+          </div>
+
+          <div class="glass-panel feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-diagram-project"></i>
+            </div>
+            <h3>MITRE ATT&CK Mapping</h3>
+            <p>Infer and attribute standardized tactics & techniques from raw neutral forensic log descriptions.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==================== SCREEN 2: CATEGORY SELECTION ==================== -->
+  <section id="screen-categories" class="screen">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a id="crumb-home">Home</a>
+        <span class="separator">/</span>
+        <span class="crumb active">Categories</span>
+      </nav>
+
+      <div class="page-header">
+        <h2>Cybersecurity Investigation Domains</h2>
+        <p>Select an active investigation category to launch an interactive scenario case file (6 Playable Categories Available).</p>
+      </div>
+
+      <div class="category-grid" id="categories-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 3: SCENARIO SELECTION ==================== -->
+  <section id="screen-scenarios" class="screen">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a id="crumb-home-2">Home</a>
+        <span class="separator">/</span>
+        <a id="crumb-categories">Categories</a>
+        <span class="separator">/</span>
+        <span class="crumb active" id="crumb-current-cat">Phishing & Social Engineering</span>
+      </nav>
+
+      <div class="page-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h2 id="scenario-cat-title">Phishing & Social Engineering</h2>
+            <p id="scenario-cat-desc">Select a scenario to launch the interactive investigation workflow.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="back-to-categories-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Categories
+          </button>
+        </div>
+      </div>
+
+      <div class="scenario-grid" id="scenarios-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 4: INVESTIGATION WORKFLOW ==================== -->
+  <section id="screen-investigation" class="screen">
+    <div class="container">
+      
+      <!-- Top Investigation Header & Stepper -->
+      <div class="investigation-header">
+        <div class="investigation-title-bar">
+          <div>
+            <span class="mono text-cyan" id="inv-case-id" style="font-size: 0.82rem;">CASE #2026-INV-88492</span>
+            <h3 id="inv-scenario-name" style="font-size: 1.3rem;">The Malicious Invoice</h3>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="exit-investigation-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Scenarios
+          </button>
+        </div>
+
+        <!-- Workflow Stepper Nav -->
+        <div class="stepper-nav">
+          <div class="step-item active" data-stage="1">
+            <div class="step-bubble">1</div>
+            <span class="step-label">Brief</span>
+          </div>
+          <div class="step-item" data-stage="2">
+            <div class="step-bubble">2</div>
+            <span class="step-label">Evidence</span>
+          </div>
+          <div class="step-item" data-stage="3">
+            <div class="step-bubble">3</div>
+            <span class="step-label">Timeline</span>
+          </div>
+          <div class="step-item" data-stage="4">
+            <div class="step-bubble">4</div>
+            <span class="step-label">MITRE</span>
+          </div>
+          <div class="step-item" data-stage="5">
+            <div class="step-bubble">5</div>
+            <span class="step-label">Causal</span>
+          </div>
+          <div class="step-item" data-stage="6">
+            <div class="step-bubble">6</div>
+            <span class="step-label">Report</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 1: MISSION BRIEF -->
+      <div id="stage-brief" class="stage-panel active">
+        <div class="brief-grid">
+          <div class="glass-panel brief-card">
+            <div class="badge badge-difficulty" style="margin-bottom: 16px;">
+              <i class="fa-solid fa-triangle-exclamation"></i> <span id="brief-severity">HIGH / CRITICAL</span>
+            </div>
+            <h2 id="brief-title" style="font-size: 1.8rem; margin-bottom: 12px;">Operation Dark Invoice</h2>
+            <p class="text-sub" id="brief-summary" style="font-size: 1.02rem; margin-bottom: 24px;">
+              At 09:14 UTC, SOC sensors flagged anomalous network activity originating from workstation WS-FIN-04.
+            </p>
+
+            <div class="brief-meta-list">
+              <div class="brief-meta-item">
+                <span class="label">Target System</span>
+                <span class="val" id="brief-target">Global Corp Financial Systems</span>
+              </div>
+              <div class="brief-meta-item">
+                <span class="label">Incident Timestamp</span>
+                <span class="val" id="brief-date">2026-07-24 09:14:02 UTC</span>
+              </div>
+              <div class="brief-meta-item">
+                <span class="label">Primary Focus</span>
+                <span class="val">Incident Triage & Kill-Chain Mapping</span>
+              </div>
+              <div class="brief-meta-item">
+                <span class="label">Estimated Time</span>
+                <span class="val" id="brief-time">10–15 minutes</span>
+              </div>
+            </div>
+
+            <h4 style="margin-bottom: 10px;" class="text-cyan"><i class="fa-solid fa-bullseye"></i> Operational Mission Objectives:</h4>
+            <p class="text-sub" id="brief-objective" style="font-size: 0.94rem; margin-bottom: 30px;">
+              Analyze log telemetry artifacts, isolate 8 relevant incident artifacts, reconstruct the attack sequence chronologically, map MITRE ATT&CK tactics, and establish causal relationships.
+            </p>
+
+            <button class="btn btn-primary btn-lg" id="start-evidence-stage-btn">
+              Open Evidence Board <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="glass-panel brief-card">
+            <h4 style="margin-bottom: 16px;" class="text-purple"><i class="fa-solid fa-shield-virus"></i> Investigator Rules of Engagement</h4>
+            <ul style="display: grid; gap: 14px; color: var(--text-sub); font-size: 0.88rem; list-style: none;">
+              <li><i class="fa-solid fa-check text-cyan"></i> <b>Randomized Cards:</b> Log events are shuffled on the Evidence Board.</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> <b>Filter Decoys:</b> Select exactly 8 relevant events out of candidate logs.</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> <b>Neutral Telemetry:</b> Infer attack techniques from process details and IPs.</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> <b>40/30/30 Scoring:</b> Points split across Timeline/Selection (40), MITRE (30), Causal (30).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2: EVIDENCE BOARD -->
+      <div id="stage-evidence" class="stage-panel">
+        <div class="evidence-toolbar">
+          <div>
+            <h3 class="stage-title">Evidence Board (Telemetry Log Cards)</h3>
+            <p class="stage-instructions" style="margin: 0;">Cards are displayed in randomized order. Select exactly 8 relevant events related to the attack.</p>
+          </div>
+          <div class="selection-counter">
+            Selected: <span id="evidence-selected-count" class="text-cyan" style="font-weight: 700;">0</span> / <span class="text-green" style="font-weight: 700;">8</span>
+          </div>
+        </div>
+
+        <div class="evidence-grid" id="evidence-cards-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+          <button class="btn btn-secondary" id="back-to-brief-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Brief
+          </button>
+          <button class="btn btn-primary" id="goto-timeline-btn">
+            Reconstruct Timeline <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 3: TIMELINE RECONSTRUCTION -->
+      <div id="stage-timeline" class="stage-panel">
+        <h3 class="stage-title">Timeline Reconstruction</h3>
+        <p class="stage-instructions">Arrange your 8 selected evidence events into exact chronological order from initial step to final step.</p>
+
+        <div class="timeline-list" id="timeline-items-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; max-width: 900px; margin-left: auto; margin-right: auto;">
+          <button class="btn btn-secondary" id="back-to-evidence-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Evidence
+          </button>
+          <button class="btn btn-primary" id="goto-mitre-btn">
+            Map MITRE ATT&CK <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 4: MITRE ATT&CK ATTRIBUTION -->
+      <div id="stage-mitre" class="stage-panel">
+        <h3 class="stage-title">MITRE ATT&CK Attribution</h3>
+        <p class="stage-instructions">Infer and map each event in your reconstructed timeline to its corresponding MITRE ATT&CK tactic and technique.</p>
+
+        <div class="mitre-list" id="mitre-items-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 30px; display: flex; justify-content: space-between; max-width: 960px; margin-left: auto; margin-right: auto;">
+          <button class="btn btn-secondary" id="back-to-timeline-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Timeline
+          </button>
+          <button class="btn btn-primary" id="goto-causal-btn">
+            Map Causal Relationships <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 5: CAUSAL RELATIONSHIPS -->
+      <div id="stage-causal" class="stage-panel">
+        <h3 class="stage-title">Causal Relationship Mapping</h3>
+        <p class="stage-instructions">Connect cause-and-effect links between dependent events across the attack chain.</p>
+
+        <div class="glass-panel causal-builder">
+          <h4 class="text-cyan"><i class="fa-solid fa-link"></i> Add Causal Connection</h4>
+          <div class="causal-controls">
+            <div>
+              <label class="mono text-sub" style="font-size: 0.75rem;">CAUSE EVENT</label>
+              <select id="causal-cause-select" class="causal-select"></select>
+            </div>
+            <div>
+              <label class="mono text-sub" style="font-size: 0.75rem;">EFFECT EVENT</label>
+              <select id="causal-effect-select" class="causal-select"></select>
+            </div>
+            <div style="align-self: flex-end;">
+              <button class="btn btn-secondary" id="add-causal-link-btn">
+                <i class="fa-solid fa-plus"></i> Connect Link
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="max-width: 960px; margin: 20px auto 12px;" class="text-sub">Active Causal Links Established:</h4>
+        <div class="causal-links-list" id="causal-links-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 36px; display: flex; justify-content: space-between; max-width: 960px; margin-left: auto; margin-right: auto;">
+          <button class="btn btn-secondary" id="back-to-mitre-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to MITRE
+          </button>
+          <button class="btn btn-primary" id="submit-investigation-btn">
+            <i class="fa-solid fa-paper-plane"></i> Submit & Generate Report
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 6: REPORT & FINAL SCORE -->
+      <div id="stage-report" class="stage-panel">
+        <div class="glass-panel report-hero">
+          <div class="score-badge-circle">
+            <span class="score-number" id="final-total-score">100</span>
+            <span class="score-total">OUT OF 100</span>
+          </div>
+          <h2 id="final-rating-title" style="font-size: 2rem; margin-bottom: 8px;">MASTER INCIDENT RESPONDER</h2>
+          <p class="text-sub" id="final-rating-desc">Flawless forensic investigation!</p>
+        </div>
+
+        <div class="score-breakdown-grid">
+          <div class="glass-panel score-card">
+            <div class="score-card-val" id="score-timeline">40 / 40</div>
+            <span class="mono text-sub" style="font-size: 0.78rem;">TIMELINE & SELECTION</span>
+          </div>
+          <div class="glass-panel score-card">
+            <div class="score-card-val" id="score-mitre">30 / 30</div>
+            <span class="mono text-sub" style="font-size: 0.78rem;">MITRE ATT&CK MAPPING</span>
+          </div>
+          <div class="glass-panel score-card">
+            <div class="score-card-val" id="score-causal">30 / 30</div>
+            <span class="mono text-sub" style="font-size: 0.78rem;">CAUSAL LINK MAPPING</span>
+          </div>
+        </div>
+
+        <!-- Attack Kill Chain Reconstruction Narrative -->
+        <div class="glass-panel report-section">
+          <h3 class="text-purple" style="margin-bottom: 12px;"><i class="fa-solid fa-book-bookmark"></i> Executive Incident Reconstruction Narrative</h3>
+          <p class="text-sub" id="report-narrative" style="line-height: 1.6; font-size: 0.95rem;"></p>
+        </div>
+
+        <!-- Detailed Forensic Audit Table -->
+        <div class="glass-panel report-section">
+          <h3 class="text-cyan" style="margin-bottom: 16px;"><i class="fa-solid fa-clipboard-check"></i> Forensic Evidence Audit</h3>
+          <div style="overflow-x: auto;">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Event ID</th>
+                  <th>Title</th>
+                  <th>Selection Status</th>
+                  <th>Timeline Rank</th>
+                  <th>MITRE Attribution</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Navigation Actions -->
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+          <button class="btn btn-secondary btn-lg" id="retry-investigation-btn">
+            <i class="fa-solid fa-rotate-right"></i> Retry Scenario
+          </button>
+          <button class="btn btn-primary btn-lg" id="report-to-scenarios-btn">
+            <i class="fa-solid fa-list-check"></i> Choose Another Scenario
+          </button>
+          <button class="btn btn-outline btn-lg" id="report-to-categories-btn">
+            <i class="fa-solid fa-layer-group"></i> Back to Categories
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TOAST CONTAINER ==================== -->
+  <div id="toast-container"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>TRACE-X Cybersecurity Investigation Engine &copy; 2026. Built with Vanilla HTML/CSS/JS.</p>
+    </div>
+  </footer>
+
+  <!-- App Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
